@@ -3,8 +3,8 @@ const imgStyle = {
   height: "75px"
 };
 
-const Die = () => (
-  <img src="/die_1.png" style={imgStyle} />
+const Die = props => (
+  <img src={`/die_${props.value}.png`} style={imgStyle} />
 );
 
 export default Die;
