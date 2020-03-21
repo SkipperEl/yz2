@@ -4,7 +4,7 @@ import DiceSet from "../components/diceset";
 export default function Index() {
   return (
     <div>
-      <DiceSet values={[
+      <DiceSet diceState={[
         {value: 1, locked: true},
         {value: 2, locked: false},
         {value: 3, locked: true},
