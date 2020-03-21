@@ -25,10 +25,10 @@ const Die = props => (
       style={imgStyle}
       onClick={props.onClick}
     />
-    <img
+    {props.locked && <img
       src="/lock.png"
       style={lockStyle}
-    />
+    />}
   </div>
 );
 
