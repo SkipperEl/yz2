@@ -1,13 +1,19 @@
 import Die from "./die";
 
-const setStyle = {
-
+const rowStyle = {
+  width: "600px",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between"
 };
 
 const DiceSet = props => (
-  props.values.map(val => (
-    <Die value={val} />
-  ))
+  <div style={rowStyle}>
+    {props.values.map(val => (
+      <Die value={val} />
+    ))}
+  </div>
 );
 
 export default DiceSet;
