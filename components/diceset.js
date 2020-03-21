@@ -10,9 +10,10 @@ const rowStyle = {
 
 const DiceSet = props => (
   <div style={rowStyle}>
-    {props.values.map((val, i) => (
+    {props.values.map((v, i) => (
       <Die
-        value={val}
+        value={v.value}
+        locked={v.locked}
         key={i}
         onClick={()=>console.log(val)}
       />

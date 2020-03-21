@@ -15,7 +15,7 @@ const imgStyle = {
 const lockStyle = {
   width: "35px",
   height: "35px",
-  marginTop: "-18px"
+  marginTop: "-12px"
 };
 
 const Die = props => (
