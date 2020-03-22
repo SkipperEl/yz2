@@ -20,9 +20,16 @@ const toggleLock = (dice, position) => {
 };
 
 const rollDice = (dice) => {
-  const newDice = [...dice];
-
-  return newDice;
+  return dice.map(v => {
+    if (v.locked) {
+      return v;
+    } else {
+      return {
+        value: 6,
+        locked: false
+      };
+    }
+  });
 };
 
 const reducer = (state, action) => {
