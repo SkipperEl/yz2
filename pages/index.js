@@ -6,7 +6,7 @@ export default function Index() {
       <h1>Don't say I don't love you, Rich</h1>
       <GameState />
 
-      <h6>Build 0001</h6>
+      <h6>Build 0002</h6>
     </>
   );
 }
