@@ -19,13 +19,17 @@ const toggleLock = (dice, position) => {
   return newDice;
 };
 
+const randomDie = () => {
+  return 1 + Math.floor(Math.random() * 6);
+}
+
 const rollDice = (dice) => {
   return dice.map(v => {
     if (v.locked) {
       return v;
     } else {
       return {
-        value: 6,
+        value: randomDie(),
         locked: false
       };
     }
