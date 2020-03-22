@@ -4,11 +4,11 @@ import DiceSet from "../components/diceset";
 
 const initialState = {
   dice: [
-    {value: 1, locked: false},
-    {value: 1, locked: false},
-    {value: 1, locked: false},
-    {value: 1, locked: false},
-    {value: 1, locked: false}
+    {value: 0, locked: false},
+    {value: 0, locked: false},
+    {value: 0, locked: false},
+    {value: 0, locked: false},
+    {value: 0, locked: false}
   ]
 };
 

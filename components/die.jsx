@@ -18,10 +18,13 @@ const lockStyle = {
   marginTop: "-12px"
 };
 
+const dieImage = n =>
+  [1, 2, 3, 4, 5, 6].includes(n) ? `/die_${n}.png` : "/die_null.png";
+
 const Die = props => (
   <div style={containerStyle}>
     <img
-      src={`/die_${props.value}.png`}
+      src={dieImage(props.value)}
       style={imgStyle}
       onClick={props.onClick}
     />
