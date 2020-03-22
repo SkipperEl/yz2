@@ -15,7 +15,7 @@ const DiceSet = props => (
         value={v.value}
         locked={v.locked}
         key={i}
-        onClick={()=>console.log(val)}
+        onClick={() => props.onClick(i)}
       />
     ))}
   </div>

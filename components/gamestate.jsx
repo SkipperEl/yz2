@@ -1,17 +1,43 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 
 import DiceSet from "../components/diceset";
 
-export default function Index() {
-  const [diceState, setDiceState] = useState([
-    {value: 1, locked: true},
+const initialState = {
+  dice: [
     {value: 1, locked: false},
-    {value: 1, locked: true},
-    {value: 2, locked: true},
-    {value: 5, locked: false}
-  ]);
+    {value: 1, locked: false},
+    {value: 1, locked: false},
+    {value: 1, locked: false},
+    {value: 1, locked: false}
+  ]
+};
+
+const toggleLock = (dice, position) => {
+  const newDice = [...dice];
+  newDice[position].locked = !newDice[position].locked;
+
+  return newDice;
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'lockToggle':
+      return {
+        ...state,
+        dice: toggleLock(state.dice, action.position)
+      }
+    default:
+      console.log("bad reducer!");
+  }
+};
+
+export default function Index() {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <DiceSet diceState={diceState} />
+    <DiceSet
+      diceState={state.dice}
+      onClick={(i) => dispatch({type: "lockToggle", position: i})}
+    />
   );
 }
