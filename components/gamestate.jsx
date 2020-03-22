@@ -19,8 +19,20 @@ const toggleLock = (dice, position) => {
   return newDice;
 };
 
+const rollDice = (dice) => {
+  const newDice = [...dice];
+
+  return newDice;
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'roll':
+      console.log("roll");
+      return {
+        ...state,
+        dice: rollDice(state.dice)
+      }
     case 'lockToggle':
       return {
         ...state,
@@ -31,13 +43,28 @@ const reducer = (state, action) => {
   }
 };
 
+const rollButtonStyle = {
+  width: "200px",
+  height: "25px",
+  marginTop: "20px",
+  backgroundColor: "#00aaaa"
+};
+
 export default function Index() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <DiceSet
-      diceState={state.dice}
-      onClick={(i) => dispatch({type: "lockToggle", position: i})}
-    />
+    <>
+      <DiceSet
+        diceState={state.dice}
+        onClick={(i) => dispatch({type: "lockToggle", position: i})}
+      />
+      <div
+        style={rollButtonStyle}
+        onClick={() => dispatch({type: "roll"})}
+      >
+        <p>ROLL</p>
+      </div>
+    </>
   );
 }
