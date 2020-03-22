@@ -1,14 +1,17 @@
+import React, { useState } from "react";
+
 import DiceSet from "../components/diceset";
 
 export default function Index() {
+  const [diceState, setDiceState] = useState([
+    {value: 1, locked: true},
+    {value: 1, locked: false},
+    {value: 1, locked: true},
+    {value: 2, locked: true},
+    {value: 5, locked: false}
+  ]);
 
   return (
-    <DiceSet diceState={[
-      {value: 1, locked: true},
-      {value: 2, locked: false},
-      {value: 3, locked: true},
-      {value: 5, locked: true},
-      {value: 6, locked: false}
-    ]} />
+    <DiceSet diceState={diceState} />
   );
 }
