@@ -9,7 +9,8 @@ const initialState = {
     {value: 0, locked: false},
     {value: 0, locked: false},
     {value: 0, locked: false}
-  ]
+  ],
+  rollsLeft: 3
 };
 
 const toggleLock = (dice, position) => {
@@ -38,17 +39,23 @@ const rollDice = (dice) => {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'reset':
+      return initialState;
+
     case 'roll':
       console.log("roll");
       return {
         ...state,
-        dice: rollDice(state.dice)
+        dice: rollDice(state.dice),
+        rollsLeft: state.rollsLeft - 1
       }
+
     case 'lockToggle':
       return {
         ...state,
         dice: toggleLock(state.dice, action.position)
       }
+
     default:
       console.log("bad reducer!");
   }
@@ -70,12 +77,23 @@ export default function Index() {
         diceState={state.dice}
         onClick={(i) => dispatch({type: "lockToggle", position: i})}
       />
-      <div
-        style={rollButtonStyle}
-        onClick={() => dispatch({type: "roll"})}
-      >
-        <p>ROLL</p>
-      </div>
+
+      {state.rollsLeft > 0 ? (
+        <button
+          style={rollButtonStyle}
+          onClick={() => dispatch({type: "roll"})}
+        >
+          ROLL
+        </button>
+      ) : (
+        <button
+          style={rollButtonStyle}
+          onClick={() => dispatch({type: "reset"})}
+        >
+          Reset
+        </button>
+      )}
+
     </>
   );
 }
