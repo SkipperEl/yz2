@@ -62,10 +62,21 @@ const reducer = (state, action) => {
 };
 
 const rollButtonStyle = {
-  width: "200px",
+  width: "120px",
   height: "25px",
-  marginTop: "20px",
+
   backgroundColor: "#00aaaa"
+};
+
+const row = {
+  marginTop: "20px",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center"
+};
+
+const basicText = {
+  marignLeft: "20px"
 };
 
 export default function Index() {
@@ -78,21 +89,25 @@ export default function Index() {
         onClick={(i) => dispatch({type: "lockToggle", position: i})}
       />
 
-      {state.rollsLeft > 0 ? (
-        <button
-          style={rollButtonStyle}
-          onClick={() => dispatch({type: "roll"})}
-        >
-          ROLL
-        </button>
-      ) : (
-        <button
-          style={rollButtonStyle}
-          onClick={() => dispatch({type: "reset"})}
-        >
-          Reset
-        </button>
-      )}
+      <div style={row}>
+        {state.rollsLeft > 0 ? (
+          <button
+            style={rollButtonStyle}
+            onClick={() => dispatch({type: "roll"})}
+          >
+            ROLL
+          </button>
+        ) : (
+          <button
+            style={rollButtonStyle}
+            onClick={() => dispatch({type: "reset"})}
+          >
+            Reset
+          </button>
+        )}
+
+        <div style={basicText}>{`Rolls left: ${state.rollsLeft}`}</div>
+      </div>
 
     </>
   );
