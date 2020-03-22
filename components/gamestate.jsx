@@ -76,7 +76,7 @@ const row = {
 };
 
 const basicText = {
-  marignLeft: "20px"
+  marginLeft: "20px"
 };
 
 export default function Index() {
