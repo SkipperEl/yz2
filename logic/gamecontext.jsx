@@ -2,11 +2,12 @@ import React, { useReducer, createContext } from "react";
 
 export const GameContext = createContext();
 
-const bombRunDuration = 3;
+import { BombRunDuration } from "./config";
+import { secondsDecrement, toggleLock, randomDie, rollDice } from "./logichelp";
 
 const initialState = {
   engineOff: false,
-  secondsRemaining: bombRunDuration,
+  secondsRemaining: BombRunDuration,
 
   dice: [
     {value: 0, locked: false},
@@ -16,42 +17,6 @@ const initialState = {
     {value: 0, locked: false}
   ],
   rollsLeft: 3
-};
-
-const secondsDecrement = (seconds, engineOff) => {
-  if (!engineOff ) {
-    return bombRunDuration;
-  }
-
-  if (seconds <= 0) {
-    return 0;
-  }
-
-  return seconds - 1;
-};
-
-const toggleLock = (dice, position) => {
-  const newDice = [...dice];
-  newDice[position].locked = !newDice[position].locked;
-
-  return newDice;
-};
-
-const randomDie = () => {
-  return 1 + Math.floor(Math.random() * 6);
-}
-
-const rollDice = (dice) => {
-  return dice.map(v => {
-    if (v.locked) {
-      return v;
-    } else {
-      return {
-        value: randomDie(),
-        locked: false
-      };
-    }
-  });
 };
 
 const reducer = (state, action) => {
@@ -77,7 +42,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         engineOff: true,
-        secondsRemaining: bombRunDuration
+        secondsRemaining: BombRunDuration
       };
 
     case "activateEngine":
