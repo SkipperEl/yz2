@@ -62,8 +62,8 @@ const reducer = (state, action) => {
 };
 
 const rollButtonStyle = {
-  width: "120px",
-  height: "25px",
+  width: "100px",
+  height: "50px",
 
   backgroundColor: "#00aaaa"
 };
@@ -75,40 +75,40 @@ const row = {
   alignItems: "center"
 };
 
-const basicText = {
-  marginLeft: "20px"
+const rollsLeft = {
+  marginLeft: "20px",
+  marginRight: "20px"
 };
 
 export default function Index() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <>
+    <div style={row}>
+
       <DiceSet
         diceState={state.dice}
         onClick={(i) => dispatch({type: "lockToggle", position: i})}
       />
 
-      <div style={row}>
-        {state.rollsLeft > 0 ? (
-          <button
-            style={rollButtonStyle}
-            onClick={() => dispatch({type: "roll"})}
-          >
-            ROLL
-          </button>
-        ) : (
-          <button
-            style={rollButtonStyle}
-            onClick={() => dispatch({type: "reset"})}
-          >
-            Reset
-          </button>
-        )}
+      <div style={rollsLeft}>{`Rolls: ${state.rollsLeft}`}</div>
 
-        <div style={basicText}>{`Rolls left: ${state.rollsLeft}`}</div>
-      </div>
+      {state.rollsLeft > 0 ? (
+        <button
+          style={rollButtonStyle}
+          onClick={() => dispatch({type: "roll"})}
+        >
+          ROLL
+        </button>
+      ) : (
+        <button
+          style={rollButtonStyle}
+          onClick={() => dispatch({type: "reset"})}
+        >
+          Reset
+        </button>
+      )}
 
-    </>
+    </div>
   );
 }
