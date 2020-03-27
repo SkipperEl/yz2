@@ -42,6 +42,12 @@ const bombRunButton = {
   backgroundColor: "#00cc33"
 };
 
+const secondsStyle = {
+  marginLeft: "15px",
+  fontSize: 32,
+  fontWeight: "700"
+}
+
 const BombRun = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -53,6 +59,12 @@ const BombRun = props => {
       >
         {state.engineOff ? "Restart Engine" : "Cut Engine"}
       </button>
+
+      { state.engineOff &&
+        <span style={secondsStyle}>
+          {`Crash in: ${state.secondsRemaining}s`}
+        </span>
+      }
 
     </div>
   );
