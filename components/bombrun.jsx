@@ -7,6 +7,18 @@ const initialState = {
   secondsRemaining: bombRunDuration
 };
 
+const secondsDecrement = (seconds, engineOff) => {
+  if (!engineOff ) {
+    return bombRunDuration;
+  }
+
+  if (seconds <= 0) {
+    return 0;
+  }
+
+  return seconds - 1;
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "cutEngine":
@@ -23,7 +35,7 @@ const reducer = (state, action) => {
     case "secondElapsed": {
       return {
         ...state,
-        secondsRemaining: state.engineOff ? state.secondsRemaining - 1 : bombRunDuration
+        secondsRemaining: secondsDecrement(state.secondsRemaining, state.engineOff)
       };
     }
   }
