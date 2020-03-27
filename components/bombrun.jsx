@@ -78,20 +78,24 @@ const BombRun = props => {
 
   }, [state.engineOff]);
 
+  const crashText = state.secondsRemaining > 0 ? `Crash in: ${state.secondsRemaining}s` : `CRASH!!`;
+
   return (
     <div style={row}>
       <button
         style={bombRunButton}
         onClick={() => dispatch({type: state.engineOff ? "activateEngine" : "cutEngine"})}
       >
-        {state.engineOff ? "Restart Engine" : "Cut Engine"}
+        {state.engineOff ? "Restart Engine" : "Start attack"}
       </button>
 
-      { state.engineOff && state.secondsRemaining > 0 &&
+      { state.engineOff &&
         <span style={secondsStyle}>
-          {`Crash in: ${state.secondsRemaining}s`}
+          {crashText}
         </span>
       }
+
+
 
     </div>
   );
