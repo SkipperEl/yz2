@@ -8,7 +8,7 @@ export default function Index() {
       <DiceRoller />
       <BombRun />
 
-      <h6>Build 0004</h6>
+      <h6>Build 0005</h6>
     </>
   );
 }

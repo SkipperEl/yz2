@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 
 const bombRunDuration = 10;
 
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
     case "secondElapsed": {
       return {
         ...state,
-        secondsRemaining: state.secondsRemaining - 1
+        secondsRemaining: state.engineOff ? state.secondsRemaining - 1 : bombRunDuration
       };
     }
   }
@@ -50,6 +50,16 @@ const secondsStyle = {
 
 const BombRun = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      dispatch({type: "secondElapsed"});
+    }, 1000);
+    return () => {
+      window.clearInterval(timer);
+    };
+
+  }, []);
 
   return (
     <div style={row}>
