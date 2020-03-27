@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { ContactContext } from "../logic/gamecontext";
+import { GameContext } from "../logic/gamecontext";
 
 import DiceSet from "../components/diceset";
 
@@ -24,7 +24,7 @@ const rollsLeft = {
 };
 
 export default function Index() {
-  const [state, dispatch] = useContext(ContactContext);
+  const [state, dispatch] = useContext(GameContext);
 
   return (
     <div style={row}>

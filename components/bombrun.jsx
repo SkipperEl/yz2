@@ -1,5 +1,7 @@
 import React, { useEffect, useContext, useRef } from "react";
 
+import { GameContext } from "../logic/gamecontext";
+
 const row = {
   marginTop: "20px",
   display: "flex",
@@ -20,7 +22,7 @@ const secondsStyle = {
 }
 
 const BombRun = props => {
-  const [state, dispatch] = useContext(ContactContext);
+  const [state, dispatch] = useContext(GameContext);
 
   useEffect(() => {
     let interval = null;
