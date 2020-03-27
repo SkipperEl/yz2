@@ -64,14 +64,19 @@ const BombRun = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      dispatch({type: "secondElapsed"});
-    }, 1000);
-    return () => {
-      window.clearInterval(timer);
-    };
+    let interval = null;
 
-  }, []);
+    if (state.engineOff) {
+      interval = window.setInterval(() => {
+        dispatch({type: "secondElapsed"});
+      }, 1000);
+    } else {
+      window.clearInterval(interval);
+    }
+
+    return () => window.clearInterval(interval);
+
+  }, [state.engineOff]);
 
   return (
     <div style={row}>
