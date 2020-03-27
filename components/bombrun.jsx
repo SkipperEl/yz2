@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useRef } from "react";
 
-const bombRunDuration = 10;
+const bombRunDuration = 3;
 
 const initialState = {
   engineOff: false,
@@ -87,7 +87,7 @@ const BombRun = props => {
         {state.engineOff ? "Restart Engine" : "Cut Engine"}
       </button>
 
-      { state.engineOff &&
+      { state.engineOff && state.secondsRemaining > 0 &&
         <span style={secondsStyle}>
           {`Crash in: ${state.secondsRemaining}s`}
         </span>
