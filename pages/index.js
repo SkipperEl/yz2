@@ -1,12 +1,14 @@
-import GameState from "../components/gamestate";
+import DiceRoller from "../components/diceroller";
+import BombRun from "../components/bombrun";
 
 export default function Index() {
   return (
     <>
       <h1>Don't say I don't love you, Rich</h1>
-      <GameState />
+      <DiceRoller />
+      <BombRun />
 
-      <h6>Build 0003</h6>
+      <h6>Build 0004</h6>
     </>
   );
 }
