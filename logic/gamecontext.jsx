@@ -2,6 +2,8 @@ import React, { useReducer, createContext } from "react";
 
 export const GameContext = createContext();
 
+const bombRunDuration = 3;
+
 const initialState = {
   engineOff: false,
   secondsRemaining: bombRunDuration,
@@ -14,6 +16,18 @@ const initialState = {
     {value: 0, locked: false}
   ],
   rollsLeft: 3
+};
+
+const secondsDecrement = (seconds, engineOff) => {
+  if (!engineOff ) {
+    return bombRunDuration;
+  }
+
+  if (seconds <= 0) {
+    return 0;
+  }
+
+  return seconds - 1;
 };
 
 const toggleLock = (dice, position) => {

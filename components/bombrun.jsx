@@ -1,45 +1,4 @@
-import React, { useEffect, useReducer, useRef } from "react";
-
-const bombRunDuration = 3;
-
-const initialState = {
-  engineOff: false,
-  secondsRemaining: bombRunDuration
-};
-
-const secondsDecrement = (seconds, engineOff) => {
-  if (!engineOff ) {
-    return bombRunDuration;
-  }
-
-  if (seconds <= 0) {
-    return 0;
-  }
-
-  return seconds - 1;
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "cutEngine":
-      return {
-        ...state,
-        engineOff: true,
-        secondsRemaining: bombRunDuration
-      };
-    case "activateEngine":
-      return {
-        ...state,
-        engineOff: false
-      };
-    case "secondElapsed": {
-      return {
-        ...state,
-        secondsRemaining: secondsDecrement(state.secondsRemaining, state.engineOff)
-      };
-    }
-  }
-};
+import React, { useEffect, useContext, useRef } from "react";
 
 const row = {
   marginTop: "20px",
@@ -61,7 +20,7 @@ const secondsStyle = {
 }
 
 const BombRun = props => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useContext(ContactContext);
 
   useEffect(() => {
     let interval = null;
