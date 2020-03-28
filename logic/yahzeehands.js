@@ -1,16 +1,14 @@
-const countOccurrences = (dice) => {
-  const count = {};
-  count[1] = 0;
-  count[2] = 0;
-  count[3] = 0;
-  count[4] = 0;
-  count[5] = 0;
-  count[6] = 0;
-
-  return dice.reduce((acc, cur) => {
+const countOccurrences = dice =>
+  dice.reduce((acc, cur) => {
     acc[cur] += 1;
     return acc;
-  }, count);
-};
+  }, {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+  });
 
-console.log(countOccurrences([1, 1, 2,6, 6, 6,  3, 4, 6]));
+console.log(countOccurrences([1, 1, 2, 6, 6, 6,4,  3, 4, 6]));
