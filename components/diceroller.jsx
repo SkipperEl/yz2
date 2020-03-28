@@ -47,6 +47,7 @@ export default function Index() {
       <button
         style={rollButtonStyle}
         onClick={() => dispatch({type: "roll"})}
+        disabled={state.rollsLeft <= 0}
       >
         ROLL
       </button>
