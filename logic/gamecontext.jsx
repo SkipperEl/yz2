@@ -5,17 +5,19 @@ export const GameContext = createContext();
 import { BombRunDuration } from "./config";
 import { secondsDecrement, toggleLock, randomDie, rollDice } from "./logichelp";
 
+const initialDice = [
+  {value: 0, locked: false},
+  {value: 0, locked: false},
+  {value: 0, locked: false},
+  {value: 0, locked: false},
+  {value: 0, locked: false}
+];
+
 const initialState = {
   engineOff: false,
   secondsRemaining: BombRunDuration,
 
-  dice: [
-    {value: 0, locked: false},
-    {value: 0, locked: false},
-    {value: 0, locked: false},
-    {value: 0, locked: false},
-    {value: 0, locked: false}
-  ],
+  dice: [...initialDice],
   rollsLeft: 3
 };
 
@@ -24,8 +26,14 @@ const reducer = (state, action) => {
     case 'reset':
       return initialState;
 
+    case 'resetDice':
+      return {
+        ...state,
+        dice: [...initialDice],
+        rollsLeft: 3
+      }
+
     case 'roll':
-      console.log("roll");
       return {
         ...state,
         dice: rollDice(state.dice),

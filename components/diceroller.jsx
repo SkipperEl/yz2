@@ -46,7 +46,7 @@ export default function Index() {
       ) : (
         <button
           style={rollButtonStyle}
-          onClick={() => dispatch({type: "reset"})}
+          onClick={() => dispatch({type: "resetDice"})}
         >
           Reset
         </button>
