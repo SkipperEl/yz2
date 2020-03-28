@@ -11,6 +11,14 @@ const rollButtonStyle = {
   backgroundColor: "#00aaaa"
 };
 
+const resetButtonStyle = {
+  width: "100px",
+  height: "50px",
+  marginLeft: "25px",
+
+  backgroundColor: "#dddd00"
+};
+
 const row = {
   marginTop: "20px",
   display: "flex",
@@ -36,21 +44,19 @@ export default function Index() {
 
       <div style={rollsLeft}>{`Rolls: ${state.rollsLeft}`}</div>
 
-      {state.rollsLeft > 0 ? (
-        <button
-          style={rollButtonStyle}
-          onClick={() => dispatch({type: "roll"})}
-        >
-          ROLL
-        </button>
-      ) : (
-        <button
-          style={rollButtonStyle}
-          onClick={() => dispatch({type: "resetDice"})}
-        >
-          Reset
-        </button>
-      )}
+      <button
+        style={rollButtonStyle}
+        onClick={() => dispatch({type: "roll"})}
+      >
+        ROLL
+      </button>
+
+      <button
+        style={resetButtonStyle}
+        onClick={() => dispatch({type: "resetDice"})}
+      >
+        Reset
+      </button>
 
     </div>
   );
