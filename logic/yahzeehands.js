@@ -6,7 +6,7 @@ import { randomDie } from "./logichelp";
 
 const generateCountMap = dice =>
   dice.reduce((acc, cur) => {
-    acc[cur] += 1;
+    acc[cur.value] += 1;
     return acc;
   }, {
     "0": 0,

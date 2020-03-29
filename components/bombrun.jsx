@@ -2,11 +2,10 @@ import React, { useEffect, useContext, useRef } from "react";
 
 import { GameContext } from "../logic/gamecontext";
 
-const row = {
+const col = {
   marginTop: "20px",
   display: "flex",
-  flexDirection: "row",
-  alignItems: "center"
+  flexDirection: "column",
 };
 
 const bombRunButton = {
@@ -16,7 +15,7 @@ const bombRunButton = {
 };
 
 const secondsStyle = {
-  marginLeft: "15px",
+  marginTop: "15px",
   fontSize: 32,
   fontWeight: "700"
 }
@@ -48,7 +47,7 @@ const BombRun = props => {
   const targetText = `To hit target: ${state.target.count} or more ${state.target.value}`;
 
   return (
-    <div style={row}>
+    <div style={col}>
       <button
         style={bombRunButton}
         onClick={() => dispatch({type: state.engineOff ? "activateEngine" : "cutEngine"})}
@@ -69,7 +68,7 @@ const BombRun = props => {
       }
 
       { state.targetMatched &&
-        <span style={successStyle}>
+        <span style={targetStyle}>
           YAY! YOU DID IT!
         </span>
       }
