@@ -55,7 +55,11 @@ const BombRun = props => {
       </button>
 
       {state.targets.map((v, i) => (
-        <Target target={v} key={`target_${i}`} />
+        <Target
+          target={v}
+          isActive={i === state.activeTarget}
+          key={`target_${i}`}
+        />
       ))}
 
       { state.engineOff &&

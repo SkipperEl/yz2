@@ -8,10 +8,11 @@ const Target = props => {
 
   const targetText = `To hit target: ${props.target.count} or more ${props.target.value}`;
   const successText = `${props.target.matched ? "HIT" : ""}`;
+  const activeText = `${props.isActive ? "<--" : ""}`
 
   return (
     <span style={targetStyle}>
-      {`${targetText}  ${successText}`}
+      {`${targetText}  ${successText} ${activeText}`}
     </span>
   );
 };
