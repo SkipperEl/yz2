@@ -24,7 +24,7 @@ const hasOfAKind = (dice, value, count) => {
   return countMap[value] >= count;
 }
 
-export const isTargetMatched = (dice, target) => {
+const isTargetMatched = (dice, target) => {
   if (target.type === "XOfAKind") {
     return hasOfAKind(dice, target.value, target.count);
   }
@@ -32,13 +32,33 @@ export const isTargetMatched = (dice, target) => {
   return false;
 };
 
-export const generateTarget = () => {
+export const matchTargets = (dice, targets) => {
+  const newTargets = [...targets];
+
+  newTargets.forEach(target => {
+    target.matched = isTargetMatched(dice, target);
+  });
+
+  return newTargets;
+};
+
+const generateTarget = () => {
   return {
+    matched: false,
     type: "XOfAKind",
     value: randomDie(),
     count: 2 + Math.floor(Math.random() * 2)
   };
 }
+
+export const generateTargets = n => {
+  const targets = [];
+  for (let i = 0; i < n; i++) {
+    targets.push(generateTarget());
+  }
+
+  return targets;
+};
 
 //const testDice = [1, 1, 2, 3, 4, 5, 5, 5, 5, 6];
 //console.log(hasOfAKind(testDice, 1, 2));
