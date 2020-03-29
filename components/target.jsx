@@ -7,7 +7,7 @@ const targetStyle = {
 const Target = props => {
 
   const targetText = `To hit target: ${props.target.count} or more ${props.target.value}`;
-  const successText = `${props.target.matched ? "SUCCESS!" : '"'}`;
+  const successText = `${props.target.matched ? "SUCCESS!" : ''}`;
 
   return (
     <span style={targetStyle}>

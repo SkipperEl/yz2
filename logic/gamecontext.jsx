@@ -39,7 +39,7 @@ const reducer = (state, action) => {
         ...state,
         dice: rollDice(state.dice),
         rollsLeft: state.rollsLeft - 1,
-        targetMatched: matchTargets(state.dice, state.targets)
+        targets: matchTargets(state.dice, state.targets)
       }
 
     case 'lockToggle':
