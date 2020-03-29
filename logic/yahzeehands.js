@@ -32,6 +32,16 @@ const isTargetMatched = (dice, target) => {
   return false;
 };
 
+export const matchTarget = (dice, targets, activeTargetIndex) => {
+  const newTargets = [...targets];
+
+  if (activeTargetIndex < targets.length) {
+    newTargets[activeTargetIndex].matched = isTargetMatched(dice, newTargets[activeTargetIndex]);
+  }
+
+  return newTargets;
+}
+
 export const matchTargets = (dice, targets) => {
   const newTargets = [...targets];
 

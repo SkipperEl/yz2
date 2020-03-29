@@ -17,6 +17,7 @@ const initialDice = [
 const initialState = {
   engineOff: false,
   secondsRemaining: BombRunDuration,
+  activeTarget: 0,
   targets: [],
   dice: [...initialDice],
   rollsLeft: 3
@@ -36,12 +37,15 @@ const reducer = (state, action) => {
 
     case 'roll':
       const newDice = rollDice(state.dice);
+      const newTargets = matchTarget(newDice, state.targets, state.activeTarget);
+      const newActiveTarget = newTargets[state.activeTarget].matched ? state.activeTarget + 1 : state.activeTarget;
 
       return {
         ...state,
         dice: newDice,
         rollsLeft: state.rollsLeft - 1,
-        targets: matchTargets(newDice, state.targets)
+        targets: newTargets,
+        activeTarget: newActiveTarget
       }
 
     case 'lockToggle':
@@ -55,7 +59,8 @@ const reducer = (state, action) => {
         ...state,
         engineOff: true,
         secondsRemaining: BombRunDuration,
-        targets: generateTargets(3)
+        targets: generateTargets(3),
+        activeTarget: 0
       };
 
     case "activateEngine":
