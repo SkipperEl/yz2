@@ -2,6 +2,8 @@ import React, { useEffect, useContext, useRef } from "react";
 
 import { GameContext } from "../logic/gamecontext";
 
+import Target from "./target";
+
 const col = {
   marginTop: "20px",
   display: "flex",
@@ -19,11 +21,6 @@ const secondsStyle = {
   fontSize: 32,
   fontWeight: "700"
 }
-
-const targetStyle = {
-  fontSize: 28,
-  fontWeight: "500"
-};
 
 const BombRun = props => {
   const [state, dispatch] = useContext(GameContext);
@@ -44,7 +41,6 @@ const BombRun = props => {
   }, [state.engineOff]);
 
   const crashText = state.secondsRemaining > 0 ? `Crash in: ${state.secondsRemaining}s` : `CRASH!!`;
-  const targetText = `To hit target: ${state.target.count} or more ${state.target.value}`;
 
   return (
     <div style={col}>
@@ -55,24 +51,15 @@ const BombRun = props => {
         {state.engineOff ? "Restart Engine" : "Start attack"}
       </button>
 
-      {state.engineOff &&
-        <span style={targetStyle}>
-          {targetText}
-        </span>
-      }
+      {state.targets.map((v, i) => {
+        <Target target={v} key={`target_${i}`}>
+      })}
 
       { state.engineOff &&
         <span style={secondsStyle}>
           {crashText}
         </span>
       }
-
-      { state.targetMatched &&
-        <span style={targetStyle}>
-          YAY! YOU DID IT!
-        </span>
-      }
-
 
     </div>
   );

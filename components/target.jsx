@@ -1,7 +1,7 @@
 const targetStyle = {
-  display: "flex",
   marginTop: "5px",
-  flexDirection: "row"
+  fontSize: 28,
+  fontWeight: "500"
 };
 
 const Target = props => {
