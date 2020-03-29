@@ -10,9 +10,9 @@ const Target = props => {
   const successText = `${props.target.matched ? "SUCCESS!" : '"'}`;
 
   return (
-    <div style={targetStyle}>
+    <span style={targetStyle}>
       {`${targetText}  ${successText}`}
-    </div>
+    </span>
   );
 };
 

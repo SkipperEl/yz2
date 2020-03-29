@@ -51,9 +51,9 @@ const BombRun = props => {
         {state.engineOff ? "Restart Engine" : "Start attack"}
       </button>
 
-      {state.targets.map((v, i) => {
-        <Target target={v} key={`target_${i}`}>
-      })}
+      {state.targets.map((v, i) => (
+        <Target target={v} key={`target_${i}`} />
+      ))}
 
       { state.engineOff &&
         <span style={secondsStyle}>

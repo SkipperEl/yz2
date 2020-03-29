@@ -52,10 +52,14 @@ const generateTarget = () => {
 }
 
 export const generateTargets = n => {
+  console.log("generateTargets", n);
+
   const targets = [];
   for (let i = 0; i < n; i++) {
     targets.push(generateTarget());
   }
+
+  console.log("targets: ", targets);
 
   return targets;
 };
