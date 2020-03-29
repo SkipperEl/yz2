@@ -26,7 +26,7 @@ export const randomDie = () => {
 export const rollDice = (dice) => {
   return dice.map(v => {
     if (v.locked) {
-      return v;
+      return {...v};
     } else {
       return {
         value: randomDie(),
