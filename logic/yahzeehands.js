@@ -1,8 +1,15 @@
-const countOccurrences = dice =>
+// target types: XOfAKind
+// value: 1-6  (dice face value)
+// count: 2-6 (count of dice face value)
+
+import { randomDie } from "./logichelp";
+
+const generateCountMap = dice =>
   dice.reduce((acc, cur) => {
     acc[cur] += 1;
     return acc;
   }, {
+    "0": 0,
     "1": 0,
     "2": 0,
     "3": 0,
@@ -11,10 +18,26 @@ const countOccurrences = dice =>
     "6": 0,
   });
 
-export const hasOfAKind = (dice, value, targetCount) => {
-  const counts = countOccurrences(dice);
+const hasOfAKind = (dice, value, count) => {
+  const countMap = generateCountMap(dice);
 
-  return counts[value] >= targetCount;
+  return countMap[value] >= count;
+}
+
+export const isTargetMatched = (dice, target) => {
+  if (target.type === "XOfAKind") {
+    return hasOfAKind(dice, target.value, target.count);
+  }
+
+  return false;
+};
+
+export const generateTarget = () => {
+  return {
+    type: "XOfAKind",
+    value: randomDie(),
+    count: 2 + Math.floor(Math.random() * 2)
+  };
 }
 
 //const testDice = [1, 1, 2, 3, 4, 5, 5, 5, 5, 6];

@@ -1,1 +1,1 @@
-export const BombRunDuration = 3;
+export const BombRunDuration = 30;
