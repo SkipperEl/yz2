@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useRef } from "react";
 
 import { GameContext } from "../logic/gamecontext";
+import { EnableCountdown } from "../logic/config";
 
 import Target from "./target";
 
@@ -30,7 +31,9 @@ const BombRun = props => {
 
     if (state.engineOff) {
       interval = window.setInterval(() => {
-        dispatch({type: "secondElapsed"});
+        if (EnableCountdown) {
+          dispatch({type: "secondElapsed"});
+        }
       }, 1000);
     } else {
       window.clearInterval(interval);
