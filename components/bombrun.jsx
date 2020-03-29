@@ -21,6 +21,11 @@ const secondsStyle = {
   fontWeight: "700"
 }
 
+const targetStyle = {
+  fontSize: 28,
+  fontWeight: "500"
+};
+
 const BombRun = props => {
   const [state, dispatch] = useContext(GameContext);
 
@@ -40,6 +45,7 @@ const BombRun = props => {
   }, [state.engineOff]);
 
   const crashText = state.secondsRemaining > 0 ? `Crash in: ${state.secondsRemaining}s` : `CRASH!!`;
+  const targetText = `To hit target: ${state.target.count} or more ${state.target.value}`;
 
   return (
     <div style={row}>
@@ -50,12 +56,23 @@ const BombRun = props => {
         {state.engineOff ? "Restart Engine" : "Start attack"}
       </button>
 
+      {state.engineOff &&
+        <span style={targetStyle}>
+          {targetText}
+        </span>
+      }
+
       { state.engineOff &&
         <span style={secondsStyle}>
           {crashText}
         </span>
       }
 
+      { state.targetMatched &&
+        <span style={successStyle}>
+          YAY! YOU DID IT!
+        </span>
+      }
 
 
     </div>
