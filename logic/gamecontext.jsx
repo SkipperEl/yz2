@@ -4,7 +4,7 @@ export const GameContext = createContext();
 
 import { BombRunDuration } from "./config";
 import { secondsDecrement, toggleLock, randomDie, rollDice } from "./logichelp";
-import { matchTargets, generateTargets } from "./yahzeehands";
+import { matchTarget, generateTargets } from "./yahzeehands";
 
 const initialDice = [
   {value: 0, locked: false},
