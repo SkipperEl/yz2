@@ -62,6 +62,12 @@ const BombRun = props => {
         />
       ))}
 
+      {state.targetsAllHit &&
+        <span style={secondsStyle}>
+          {`Winner winner chicken dinner!`}
+        </span>
+      }
+
       { state.engineOff &&
         <span style={secondsStyle}>
           {crashText}
