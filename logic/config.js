@@ -1,2 +1,2 @@
-export const BombRunDuration = 30;
-export const EnableCountdown = false;
+export const BombRunDuration = 45;
+export const EnableCountdown = true;
