@@ -22,7 +22,7 @@ const dieImage = n =>
   [1, 2, 3, 4, 5, 6].includes(n) ? `/die_${n}.png` : "/die_null.png";
 
 const Die = props => (
-  <div style={containerStyle}>
+  <div style={containerStyle} draggable={true}>
     <img
       src={dieImage(props.value)}
       style={imgStyle}
