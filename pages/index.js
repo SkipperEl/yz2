@@ -12,7 +12,7 @@ export default function Index() {
       <DiceRoller />
       <BombRun />
 
-      <h6>Build 0011</h6>
+      <h6>Build 0012</h6>
     </GameContextProvider>
   );
 }
