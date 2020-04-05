@@ -1,3 +1,5 @@
+import React from "react";
+import { useDrag } from "react-dnd";
 
 const containerStyle = {
   width: "75px",
@@ -21,18 +23,33 @@ const lockStyle = {
 const dieImage = n =>
   [1, 2, 3, 4, 5, 6].includes(n) ? `/die_${n}.png` : "/die_null.png";
 
-const Die = props => (
-  <div style={containerStyle} draggable={true}>
-    <img
-      src={dieImage(props.value)}
-      style={imgStyle}
-      onClick={props.onClick}
-    />
-    {props.locked && <img
-      src="/lock.png"
-      style={lockStyle}
-    />}
-  </div>
-);
+const Die = props => {
+  const [{isDragging }, drag] = useDrag({
+    item: { name: "die", type: "atype" },
+    end: (item, monitor) => {
+      const dropResult = monitor.getDropResult()
+      if (item && dropResult) {
+        alert("yayyy");
+      }
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging()
+    })
+  });
+
+  return (
+    <div style={containerStyle} ref={drag}>
+      <img
+        src={dieImage(props.value)}
+        style={imgStyle}
+        onClick={props.onClick}
+      />
+      {props.locked && <img
+        src="/lock.png"
+        style={lockStyle}
+      />}
+    </div>
+  );
+}
 
 export default Die;
