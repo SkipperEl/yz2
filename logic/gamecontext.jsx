@@ -36,7 +36,7 @@ const initialState = {
   engineOff: false,
   secondsRemaining: BombRunDuration,
 
-  targets = mockTargets
+  targets: mockTargets
 };
 
 const reducer = (state, action) => {
