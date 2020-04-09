@@ -10,11 +10,11 @@ const containerStyle = {
 
 const SourceDie = props => {
   const [{isDragging }, drag] = useDrag({
-    item: { name: "die", type: "atype", dieIndex: props.index },
+    item: { name: "die", type: "atype" },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        alert(`dropped die ${item.dieIndex} into ${dropResult.name} : ${dropResult.thing}`);
+        props.onDrop(dropResult)
       }
     },
     collect: (monitor) => ({

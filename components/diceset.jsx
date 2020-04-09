@@ -8,16 +8,22 @@ const rowStyle = {
   justifyContent: "space-between"
 };
 
-const DiceSet = props => (
-  <div style={rowStyle}>
-    {props.diceState.map((v, i) => (
-      <SourceDie
-        value={v.value}
-        index={i}
-        key={i}
-      />
-    ))}
-  </div>
-);
+const DiceSet = props => {
+  const handleDrop = (i, dropResult) => {
+    alert(`dropped die ${i} info ${dropResult.name} : ${dropResult.thing}`);
+  };
+
+  return (
+    <div style={rowStyle}>
+      {props.diceState.map((v, i) => (
+        <SourceDie
+          value={v.value}
+          key={i}
+          onDrop={(dropResult) => handleDrop(i, dropResult)}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default DiceSet;
