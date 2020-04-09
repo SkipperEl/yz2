@@ -14,7 +14,7 @@ const SourceDie = props => {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        alert(`dropped die ${item.dieIndex} into ${dropResult.name}`);
+        alert(`dropped die ${item.dieIndex} into ${dropResult.name} : ${dropResult.thing}`);
       }
     },
     collect: (monitor) => ({

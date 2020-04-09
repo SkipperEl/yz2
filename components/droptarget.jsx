@@ -11,7 +11,7 @@ const containerStyle = {
 const DropTarget = props => {
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: "atype",
-    drop: () => ({ name: "droptarget" }),
+    drop: () => ({ name: "droptarget", thing: 2 }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop()
