@@ -15,13 +15,11 @@ const initialDice = [
 ];
 
 const initialState = {
-  engineOff: false,
-  secondsRemaining: BombRunDuration,
-  activeTarget: 0,
-  targets: [],
   dice: [...initialDice],
   rollsLeft: 3,
-  targetsAllHit: false,
+
+  engineOff: false,
+  secondsRemaining: BombRunDuration,
 };
 
 const reducer = (state, action) => {
@@ -38,27 +36,18 @@ const reducer = (state, action) => {
 
     case 'roll':
       const newDice = rollDice(state.dice);
-      const newTargets = matchTarget(newDice, state.targets, state.activeTarget);
-      const newActiveTarget = newTargets[state.activeTarget].matched ? state.activeTarget + 1 : state.activeTarget;
-      const targetsAllHit = state.engineOff && newActiveTarget >= newTargets.length
 
       return {
         ...state,
         dice: newDice,
-        rollsLeft: state.rollsLeft - 1,
-        targets: newTargets,
-        activeTarget: newActiveTarget,
-        targetsAllHit
+        rollsLeft: state.rollsLeft - 1
       }
 
     case "cutEngine":
       return {
         ...state,
         engineOff: true,
-        secondsRemaining: BombRunDuration,
-        targets: generateTargets(3),
-        activeTarget: 0,
-        targetsAllHit: false
+        secondsRemaining: BombRunDuration
       };
 
     case "activateEngine":
