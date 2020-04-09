@@ -51,12 +51,6 @@ const reducer = (state, action) => {
         targetsAllHit
       }
 
-    case 'lockToggle':
-      return {
-        ...state,
-        dice: toggleLock(state.dice, action.position)
-      }
-
     case "cutEngine":
       return {
         ...state,

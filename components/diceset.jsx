@@ -13,9 +13,7 @@ const DiceSet = props => (
     {props.diceState.map((v, i) => (
       <Die
         value={v.value}
-        locked={v.locked}
         key={i}
-        onClick={() => props.onClick(i)}
       />
     ))}
   </div>

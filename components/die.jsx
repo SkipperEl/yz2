@@ -3,21 +3,12 @@ import { useDrag } from "react-dnd";
 
 const containerStyle = {
   width: "75px",
-  height: "100px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center"
+  height: "75px",
 };
 
 const imgStyle = {
   width: "75px",
   height: "75px"
-};
-
-const lockStyle = {
-  width: "35px",
-  height: "35px",
-  marginTop: "-12px"
 };
 
 const dieImage = n =>
@@ -42,12 +33,7 @@ const Die = props => {
       <img
         src={dieImage(props.value)}
         style={imgStyle}
-        onClick={props.onClick}
       />
-      {props.locked && <img
-        src="/lock.png"
-        style={lockStyle}
-      />}
     </div>
   );
 }

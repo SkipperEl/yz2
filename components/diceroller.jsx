@@ -39,7 +39,6 @@ export default function Index() {
 
       <DiceSet
         diceState={state.dice}
-        onClick={(i) => dispatch({type: "lockToggle", position: i})}
       />
 
       <div style={rollsLeft}>{`Rolls: ${state.rollsLeft}`}</div>
