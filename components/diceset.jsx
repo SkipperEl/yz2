@@ -13,6 +13,7 @@ const DiceSet = props => (
     {props.diceState.map((v, i) => (
       <SourceDie
         value={v.value}
+        index={i}
         key={i}
       />
     ))}
