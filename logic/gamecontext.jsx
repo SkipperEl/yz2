@@ -14,12 +14,29 @@ const initialDice = [
   {value: 0, locked: false}
 ];
 
+const mockTargets = [
+  {
+    type: "XOfAKind",
+    value: 3,
+    count: 3,
+    dice: [4, 4, 0]
+  },
+  {
+    type: "XOfAKind",
+    value: 2,
+    count: 3,
+    dice: [2, 0, 0]
+  }
+];
+
 const initialState = {
   dice: [...initialDice],
   rollsLeft: 3,
 
   engineOff: false,
   secondsRemaining: BombRunDuration,
+
+  targets = mockTargets
 };
 
 const reducer = (state, action) => {
