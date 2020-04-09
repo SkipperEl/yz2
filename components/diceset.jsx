@@ -1,4 +1,4 @@
-import Die from "./die";
+import SourceDie from "./sourceDie";
 
 const rowStyle = {
   width: "600px",
@@ -11,7 +11,7 @@ const rowStyle = {
 const DiceSet = props => (
   <div style={rowStyle}>
     {props.diceState.map((v, i) => (
-      <Die
+      <SourceDie
         value={v.value}
         key={i}
       />
