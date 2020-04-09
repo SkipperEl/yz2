@@ -20,7 +20,7 @@ const Die = props => {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        alert("yayyy");
+        alert(`dropped ${item.name} into ${dropResult.name}`);
       }
     },
     collect: (monitor) => ({
