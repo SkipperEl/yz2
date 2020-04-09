@@ -17,7 +17,7 @@ export default function Index() {
         <BombRun />
         <DropTarget />
 
-        <h6>Build 0013</h6>
+        <h6>Build 0014</h6>
       </GameContextProvider>
     </DndProvider>
   );
