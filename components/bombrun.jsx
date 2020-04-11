@@ -74,6 +74,7 @@ const BombRun = props => {
           <div style={targetSpacer}>
             <TargetSet
               target={v}
+              targetIndex={i}
               key={i}
             />
           </div>

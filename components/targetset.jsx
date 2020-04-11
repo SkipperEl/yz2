@@ -19,6 +19,7 @@ const TargetSet = props => {
             value={v}
             dieIndex={i}
             targetIndex={props.targetIndex}
+            key={i}
           />
         </div>
       ))}
