@@ -15,7 +15,6 @@ export default function Index() {
         <h1>Don't say I don't love you, Rich</h1>
         <DiceRoller />
         <BombRun />
-        <DropTarget />
 
         <h6>Build 0014</h6>
       </GameContextProvider>

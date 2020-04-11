@@ -3,7 +3,7 @@ import React, { useEffect, useContext, useRef } from "react";
 import { GameContext } from "../logic/gamecontext";
 import { EnableCountdown } from "../logic/config";
 
-import Target from "./target";
+import TargetSet from "./targetset";
 
 const col = {
   marginTop: "20px",
@@ -22,6 +22,15 @@ const secondsStyle = {
   fontSize: 32,
   fontWeight: "700"
 }
+
+const targetListStyle = {
+  display: "flex",
+  flexDirection: "column"
+};
+
+const targetSpacer = {
+  marginBottom: "10px"
+};
 
 const BombRun = props => {
   const [state, dispatch] = useContext(GameContext);
@@ -59,6 +68,17 @@ const BombRun = props => {
           {crashText}
         </span>
       }
+
+      <div style={targetListStyle}>
+        {state.targets.map((v, i) => (
+          <div style={targetSpacer}>
+            <TargetSet
+              target={v}
+              key={i}
+            />
+          </div>
+        ))}
+      </div>
 
     </div>
   );

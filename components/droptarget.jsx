@@ -1,9 +1,11 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 
+import Die from "./Die";
+
 const containerStyle = {
   backgroundColor: "#cccccc",
-  width: "350px",
+  width: "75px",
   height: "150px",
   marginTop: "100px"
 };
@@ -11,7 +13,11 @@ const containerStyle = {
 const DropTarget = props => {
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: "atype",
-    drop: () => ({ name: "droptarget", thing: 2 }),
+    drop: () => ({
+      name: "droptarget",
+      targetIndex: props.targetIndex,
+      dieIndex: props.dieIndex
+    }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop()
@@ -28,7 +34,10 @@ const DropTarget = props => {
   }
 
   return (
-    <div ref={drop} style={{...containerStyle, backgroundColor}} />
+    <div ref={drop} style={{...containerStyle, backgroundColor}}>
+      <Die value={props.targetValue} />
+      <Die value={props.value} />
+    </div>
   );
 };
 
