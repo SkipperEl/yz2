@@ -9,17 +9,13 @@ const rowStyle = {
 };
 
 const DiceSet = props => {
-  const handleDrop = (i, dropResult) => {
-    alert(`die ${i} => target ${dropResult.targetIndex} die ${dropResult.dieIndex}`);
-  };
-
   return (
     <div style={rowStyle}>
       {props.diceState.map((v, i) => (
         <SourceDie
           value={v.value}
           key={i}
-          onDrop={(dropResult) => handleDrop(i, dropResult)}
+          onDrop={(dropResult) => props.onDrop(i, dropResult.targetIndex, dropResult.dieIndex)}
         />
       ))}
     </div>

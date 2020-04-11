@@ -34,11 +34,16 @@ const rollsLeft = {
 export default function Index() {
   const [state, dispatch] = useContext(GameContext);
 
+  const handleDrop = (srcDieIndex, targetIndex, targetDieIndex) => {
+    alert(`die ${srcDieIndex} => target ${targetIndex} die ${targetDieIndex}`);
+  };
+
   return (
     <div style={row}>
 
       <DiceSet
         diceState={state.dice}
+        onDrop={(a, b, c) => handleDrop(a, b, c)}
       />
 
       <div style={rollsLeft}>{`Rolls: ${state.rollsLeft}`}</div>
