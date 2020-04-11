@@ -71,11 +71,10 @@ const BombRun = props => {
 
       <div style={targetListStyle}>
         {state.targets.map((v, i) => (
-          <div style={targetSpacer}>
+          <div style={targetSpacer} key={i}>
             <TargetSet
               target={v}
               targetIndex={i}
-              key={i}
             />
           </div>
         ))}

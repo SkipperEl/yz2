@@ -13,13 +13,12 @@ const TargetSet = props => {
   return (
     <div style={itemRow}>
       {props.target.dice.map( (v, i) => (
-        <div style={itemStyle}>
+        <div style={itemStyle} key={i}>
           <DropTarget
             targetValue={props.target.value}
             value={v}
             dieIndex={i}
             targetIndex={props.targetIndex}
-            key={i}
           />
         </div>
       ))}
