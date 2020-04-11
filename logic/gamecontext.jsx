@@ -61,10 +61,10 @@ const reducer = (state, action) => {
       }
 
     case 'dropDie':
-      console.log(action.srcDieIndex, action.targetIndex, action.targetDieIndex);
+      //console.log(action.srcDieIndex, action.targetIndex, action.targetDieIndex);
 
       // check if the die can be moved
-      const srcDieValue = state.dice[action.srcDieIndex];
+      const srcDieValue = state.dice[action.srcDieIndex].value;
       if (
         state.dice[action.srcDieIndex].available &&
         srcDieValue >= state.targets[action.targetIndex].dice[action.targetDieIndex] &&

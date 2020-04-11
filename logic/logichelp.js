@@ -30,7 +30,8 @@ export const rollDice = (dice) => {
     } else {
       return {
         value: randomDie(),
-        locked: false
+        locked: false,
+        available: true
       };
     }
   });
