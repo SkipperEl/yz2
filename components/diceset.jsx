@@ -10,7 +10,7 @@ const rowStyle = {
 
 const DiceSet = props => {
   const handleDrop = (i, dropResult) => {
-    alert(`dropped die ${i} info ${dropResult.name} : ${dropResult.thing}`);
+    alert(`die ${i} => target ${dropResult.targetIndex} die ${dropResult.dieIndex}`);
   };
 
   return (
