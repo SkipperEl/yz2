@@ -35,7 +35,7 @@ export default function Index() {
   const [state, dispatch] = useContext(GameContext);
 
   const handleDrop = (srcDieIndex, targetIndex, targetDieIndex) => {
-    alert(`die ${srcDieIndex} => target ${targetIndex} die ${targetDieIndex}`);
+    //alert(`die ${srcDieIndex} => target ${targetIndex} die ${targetDieIndex}`);
   };
 
   return (
@@ -43,7 +43,7 @@ export default function Index() {
 
       <DiceSet
         diceState={state.dice}
-        onDrop={(a, b, c) => handleDrop(a, b, c)}
+        onDrop={handleDrop}
       />
 
       <div style={rollsLeft}>{`Rolls: ${state.rollsLeft}`}</div>

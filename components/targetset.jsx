@@ -6,7 +6,7 @@ const itemRow = {
 };
 
 const itemStyle = {
-  marginRight: "5px"
+  marginRight: "25px"
 };
 
 const TargetSet = props => {
