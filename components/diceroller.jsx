@@ -36,6 +36,7 @@ export default function Index() {
 
   const handleDrop = (srcDieIndex, targetIndex, targetDieIndex) => {
     //alert(`die ${srcDieIndex} => target ${targetIndex} die ${targetDieIndex}`);
+    dispatch({type: "dropDie", srcDieIndex, targetIndex, targetDieIndex});
   };
 
   return (

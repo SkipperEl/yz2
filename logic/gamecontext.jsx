@@ -60,6 +60,14 @@ const reducer = (state, action) => {
         rollsLeft: state.rollsLeft - 1
       }
 
+    case 'dropDie':
+      console.log(action.srcDieIndex, action.targetIndex, action.targetDieIndex);
+
+
+      return {
+        ...state
+      };
+
     case "cutEngine":
       return {
         ...state,
