@@ -7,11 +7,11 @@ import { secondsDecrement, toggleLock, randomDie, rollDice } from "./logichelp";
 import { matchTarget, generateTargets } from "./yahzeehands";
 
 const initialDice = [
-  {value: 0, locked: false},
-  {value: 0, locked: false},
-  {value: 0, locked: false},
-  {value: 0, locked: false},
-  {value: 0, locked: false}
+  {value: 0, locked: false, available: true},
+  {value: 0, locked: false, available: true},
+  {value: 0, locked: false, available: true},
+  {value: 0, locked: false, available: true},
+  {value: 0, locked: false, available: true}
 ];
 
 const mockTargets = [
@@ -63,6 +63,27 @@ const reducer = (state, action) => {
     case 'dropDie':
       console.log(action.srcDieIndex, action.targetIndex, action.targetDieIndex);
 
+      // check if the die can be moved
+      const srcDieValue = state.dice[action.srcDieIndex];
+      if (
+        state.dice[action.srcDieIndex].available &&
+        srcDieValue >= state.targets[action.targetIndex].dice[action.targetDieIndex] &&
+        srcDieValue >= state.targets[action.targetIndex].value)
+      {
+        // move the die
+        const newDice = [...state.dice];
+        newDice[action.srcDieIndex].value = 0;
+        newDice[action.srcDieIndex].available = false;
+
+        const newTargets = [...state.targets];
+        newTargets[action.targetIndex].dice[action.targetDieIndex] = srcDieValue;
+
+        return {
+          ...state,
+          dice: newDice,
+          targets: newTargets
+        };
+      }
 
       return {
         ...state

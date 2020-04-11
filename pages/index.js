@@ -16,7 +16,7 @@ export default function Index() {
         <DiceRoller />
         <BombRun />
 
-        <h6>Build 0015</h6>
+        <h6>Build 0016</h6>
       </GameContextProvider>
     </DndProvider>
   );
