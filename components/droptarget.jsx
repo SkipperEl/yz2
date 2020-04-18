@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 
-import Die from "./Die";
+import Die from "./die";
 
 const containerStyle = {
   backgroundColor: "#cccccc",
