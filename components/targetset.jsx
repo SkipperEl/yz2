@@ -2,11 +2,18 @@ import DropTarget from "./droptarget";
 
 const itemRow = {
   display: "flex",
-  flexDirection: "row"
+  flexDirection: "row",
+  alignItems: "center"
 };
 
 const itemStyle = {
   marginRight: "25px"
+};
+
+const checkStyle = {
+  width: "50px",
+  height: "50px",
+  marginTop: "175px"
 };
 
 const TargetSet = props => {
@@ -22,6 +29,14 @@ const TargetSet = props => {
           />
         </div>
       ))}
+
+      { props.target.complete && (
+        <img
+          src="/check.png"
+          style={checkStyle}
+        />
+      )}
+
     </div>
   );
 };
