@@ -4,7 +4,7 @@ export const GameContext = createContext();
 
 import { BombRunDuration } from "./config";
 import { secondsDecrement, toggleLock, randomDie, rollDice } from "./logichelp";
-import { matchTarget, updateTargetMatching } from "./yahzeehands";
+import { matchTarget, updateTargetMatching, generateTargets } from "./yahzeehands";
 
 const initialDice = [
   {value: 0, locked: false, available: true},
@@ -38,7 +38,7 @@ const initialState = {
   engineOff: false,
   secondsRemaining: BombRunDuration,
 
-  targets: mockTargets
+  targets: []
 };
 
 const reducer = (state, action) => {
@@ -97,7 +97,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         engineOff: true,
-        secondsRemaining: BombRunDuration
+        secondsRemaining: BombRunDuration,
+        targets: generateTargets(2)
       };
 
     case "activateEngine":

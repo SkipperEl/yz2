@@ -45,17 +45,18 @@ export const updateTargetMatching = (targets) => {
 }
 
 const generateTarget = () => {
+  const count = 2 + Math.floor(Math.random() * 2);
+
   return {
-    matched: false,
-    type: "XOfAKind",
+    type: "XOfAKindOrHigher",
     value: randomDie(),
-    count: 2 + Math.floor(Math.random() * 2)
+    count,
+    dice: Array(count).fill(0),
+    complete: false
   };
 }
 
 export const generateTargets = n => {
-  console.log("generateTargets", n);
-
   const targets = [];
   for (let i = 0; i < n; i++) {
     targets.push(generateTarget());
