@@ -6,7 +6,7 @@ import { randomDie } from "./logichelp";
 
 const generateCountMap = dice =>
   dice.reduce((acc, cur) => {
-    acc[cur.value] += 1;
+    acc[cur] += 1;
     return acc;
   }, {
     "0": 0,
@@ -30,7 +30,7 @@ const hasXOfAKindOrHigher = (dice, value, count) => {
   return false;
 };
 
-const isTargetMatched = (dice, target) => {
+const isTargetMatched = (target) => {
   if (target.type === "XOfAKindOrHigher") {
     return hasXOfAKindOrHigher(target.dice, target.value, target.count);
   }
