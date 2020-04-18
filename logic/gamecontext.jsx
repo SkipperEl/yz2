@@ -4,7 +4,7 @@ export const GameContext = createContext();
 
 import { BombRunDuration } from "./config";
 import { secondsDecrement, toggleLock, randomDie, rollDice } from "./logichelp";
-import { matchTarget, generateTargets } from "./yahzeehands";
+import { matchTarget, updateTargetMatching } from "./yahzeehands";
 
 const initialDice = [
   {value: 0, locked: false, available: true},
@@ -16,16 +16,18 @@ const initialDice = [
 
 const mockTargets = [
   {
-    type: "XOfAKind",
+    type: "XOfAKindOrHigher",
     value: 3,
     count: 3,
-    dice: [4, 4, 0]
+    dice: [4, 4, 0],
+    complete: false
   },
   {
-    type: "XOfAKind",
+    type: "XOfAKindOrHigher",
     value: 2,
     count: 3,
-    dice: [2, 0, 0]
+    dice: [2, 0, 0],
+    complete: false
   }
 ];
 
@@ -77,6 +79,9 @@ const reducer = (state, action) => {
 
         const newTargets = [...state.targets];
         newTargets[action.targetIndex].dice[action.targetDieIndex] = srcDieValue;
+
+        // Update target completion
+        updateTargetMatching(newTargets);
 
         return {
           ...state,

@@ -18,39 +18,31 @@ const generateCountMap = dice =>
     "6": 0,
   });
 
-const hasOfAKind = (dice, value, count) => {
+const hasXOfAKindOrHigher = (dice, value, count) => {
   const countMap = generateCountMap(dice);
 
-  return countMap[value] >= count;
-}
-
-const isTargetMatched = (dice, target) => {
-  if (target.type === "XOfAKind") {
-    return hasOfAKind(dice, target.value, target.count);
+  for( let i=value; i<= 6; i+=1) {
+    if (countMap[i] >= count) {
+      return true;
+    }
   }
 
   return false;
 };
 
-export const matchTarget = (dice, targets, activeTargetIndex) => {
-  const newTargets = [...targets];
-
-  if (activeTargetIndex < targets.length) {
-    newTargets[activeTargetIndex].matched = isTargetMatched(dice, newTargets[activeTargetIndex]);
+const isTargetMatched = (dice, target) => {
+  if (target.type === "XOfAKindOrHigher") {
+    return hasXOfAKindOrHigher(target.dice, target.value, target.count);
   }
 
-  return newTargets;
-}
-
-export const matchTargets = (dice, targets) => {
-  const newTargets = [...targets];
-
-  newTargets.forEach(target => {
-    target.matched = isTargetMatched(dice, target);
-  });
-
-  return newTargets;
+  return false;
 };
+
+export const updateTargetMatching = (targets) => {
+  targets.forEach(target => {
+    target.complete = isTargetMatched(target);
+  });
+}
 
 const generateTarget = () => {
   return {
