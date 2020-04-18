@@ -69,7 +69,6 @@ const reducer = (state, action) => {
       const srcDieValue = state.dice[action.srcDieIndex].value;
       if (
         state.dice[action.srcDieIndex].available &&
-        srcDieValue >= state.targets[action.targetIndex].dice[action.targetDieIndex] &&
         srcDieValue >= state.targets[action.targetIndex].value)
       {
         // move the die
