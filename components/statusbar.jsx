@@ -9,7 +9,7 @@ const row = {
 };
 
 const scoreStyle = {
-  fontSize: 32,
+  fontSize: 28,
   fontWeight: "700"
 };
 
