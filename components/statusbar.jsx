@@ -5,7 +5,7 @@ import { GameContext } from "../logic/gamecontext";
 const row = {
   display: "flex",
   flexDirection: "row",
-  justifyContent: "flex-end"
+  justifyContent: "space-between"
 };
 
 const scoreStyle = {
@@ -19,7 +19,7 @@ const StatusBar = () => {
   return (
     <div style={row}>
       <span style={scoreStyle}>
-        {state.score}
+        Score: {state.score}
       </span>
     </div>
   );
