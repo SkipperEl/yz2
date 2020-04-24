@@ -67,6 +67,25 @@ export const generateTargets = n => {
   return targets;
 };
 
+/*
+const mockTargets = [
+  {
+    type: "XOfAKindOrHigher",
+    value: 3,
+    count: 3,
+    dice: [4, 4, 0],
+    complete: false
+  },
+  {
+    type: "XOfAKindOrHigher",
+    value: 2,
+    count: 3,
+    dice: [2, 0, 0],
+    complete: false
+  }
+];
+*/
+
 //const testDice = [1, 1, 2, 3, 4, 5, 5, 5, 5, 6];
 //console.log(hasOfAKind(testDice, 1, 2));
 //console.log(hasOfAKind(testDice, 1, 3));
