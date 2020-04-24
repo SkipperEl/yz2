@@ -41,14 +41,20 @@ const isTargetMatched = (target) => {
 export const updateTargetMatching = (targets) => {
   let score = 0;
   let newTargets = [];
+  let addTargets = 0;
 
   targets.forEach(target => {
     if (isTargetMatched(target)) {
       score += target.score;
+      addTargets += 1;
     } else {
       newTargets.push(target);
     }
   });
+
+  if (score > 0) {
+    newTargets.push(generateTarget());
+  }
 
   return {
     newTargets,
