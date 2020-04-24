@@ -40,13 +40,20 @@ const isTargetMatched = (target) => {
 
 export const updateTargetMatching = (targets) => {
   let score = 0;
+  let newTargets = [];
 
   targets.forEach(target => {
-    target.complete = isTargetMatched(target);
-    score += target.complete ? target.score : 0;
+    if (isTargetMatched(target)) {
+      score += target.score;
+    } else {
+      newTargets.push(target);
+    }
   });
 
-  return score;
+  return {
+    newTargets,
+    score
+  };
 };
 
 const generateTarget = () => {
@@ -69,8 +76,6 @@ export const generateTargets = n => {
   for (let i = 0; i < n; i++) {
     targets.push(generateTarget());
   }
-
-  console.log("targets: ", targets);
 
   return targets;
 };

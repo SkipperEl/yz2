@@ -62,17 +62,17 @@ const reducer = (state, action) => {
         newDice[action.srcDieIndex].value = 0;
         newDice[action.srcDieIndex].available = false;
 
-        const newTargets = [...state.targets];
-        newTargets[action.targetIndex].dice[action.targetDieIndex] = srcDieValue;
+        const updatedTargets = [...state.targets];
+        updatedTargets[action.targetIndex].dice[action.targetDieIndex] = srcDieValue;
 
         // Update target completion
-        const targetsScore = updateTargetMatching(newTargets);
+        const newStuff = updateTargetMatching(updatedTargets);
 
         return {
           ...state,
           dice: newDice,
-          targets: newTargets,
-          score: targetsScore
+          targets: newStuff.newTargets,
+          score: state.score + newStuff.score
         };
       }
 
