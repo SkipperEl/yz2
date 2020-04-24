@@ -39,18 +39,26 @@ const isTargetMatched = (target) => {
 };
 
 export const updateTargetMatching = (targets) => {
+  let score = 0;
+
   targets.forEach(target => {
     target.complete = isTargetMatched(target);
+    score += target.complete ? target.score : 0;
   });
-}
+
+  return score;
+};
 
 const generateTarget = () => {
+  const value = randomDie();
   const count = 2 + Math.floor(Math.random() * 2);
+  const score = 5 + value * count;
 
   return {
     type: "XOfAKindOrHigher",
-    value: randomDie(),
+    value,
     count,
+    score,
     dice: Array(count).fill(0),
     complete: false
   };
