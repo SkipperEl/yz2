@@ -14,7 +14,6 @@ const rollButtonStyle = {
 const resetButtonStyle = {
   width: "100px",
   height: "50px",
-  marginLeft: "25px",
 
   backgroundColor: "#dddd00"
 };
@@ -47,22 +46,24 @@ export default function Index() {
         onDrop={handleDrop}
       />
 
-      <div style={rollsLeft}>{`Rolls: ${state.rollsLeft}`}</div>
+      <div style={rollsLeft}>{`Bombs: ${state.rollsLeft}`}</div>
 
-      <button
-        style={rollButtonStyle}
-        onClick={() => dispatch({type: "roll"})}
-        disabled={state.rollsLeft <= 0}
-      >
-        ROLL
-      </button>
-
-      <button
-        style={resetButtonStyle}
-        onClick={() => dispatch({type: "resetDice"})}
-      >
-        Reset
-      </button>
+      {state.rollsLeft > 0 ? (
+        <button
+          style={rollButtonStyle}
+          onClick={() => dispatch({type: "roll"})}
+          disabled={state.rollsLeft <= 0}
+        >
+          Drop Bomb
+        </button>
+        ) : (
+        <button
+          style={resetButtonStyle}
+          onClick={() => dispatch({type: "resetDice"})}
+        >
+          Reload
+        </button>
+      )}
 
     </div>
   );
