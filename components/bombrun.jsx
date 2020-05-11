@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useRef } from "react";
 
-import { GameContext } from "../logic/gamecontext";
+import { GameContext, GameSteps } from "../logic/gamecontext";
 import { EnableCountdown } from "../logic/config";
 
 import TargetSet from "./targetset";
@@ -32,6 +32,85 @@ const targetSpacer = {
   marginBottom: "10px"
 };
 
+const StartStep = props => {
+  const [state, dispatch] = useContext(GameContext);
+
+  return (
+    <div style={col}>
+      <button
+        style={bombRunButton}
+        onClick={() => dispatch({type: "beginBombing"})}
+      >
+        Start attack
+      </button>
+    </div>
+  );
+};
+
+const BombingStep = props => {
+  const [state, dispatch] = useContext(GameContext);
+
+  return (
+    <div style={col}>
+      <button
+        style={bombRunButton}
+        onClick={() => dispatch({type: "restartEngine" })}
+      >
+        Restart Engine
+      </button>
+
+      <span style={secondsStyle}>
+        {`Crash in: ${state.secondsRemaining}s`}
+      </span>
+
+      <div style={targetListStyle}>
+        {state.targets.map((v, i) => (
+          <div style={targetSpacer} key={i}>
+            <TargetSet
+              target={v}
+              targetIndex={i}
+            />
+          </div>
+        ))}
+      </div>
+
+    </div>
+  );
+
+};
+
+const RestartingEngineStep => {
+  const [state, dispatch] = useContext(GameContext);
+
+  return (
+    <div style={col}>
+      <span style={secondsStyle}>
+        {`Crash in: ${state.secondsRemaining}s`}
+      </span>
+
+      <div style={targetListStyle}>
+        {state.targets.map((v, i) => (
+          <div style={targetSpacer} key={i}>
+            <TargetSet
+              target={v}
+              targetIndex={i}
+            />
+          </div>
+        ))}
+      </div>
+
+    </div>
+  );
+};
+
+const OverStep => {
+  return (
+    <h1>
+      CRASHED! Bummer.
+    </h1>
+  );
+};
+
 const BombRun = props => {
   const [state, dispatch] = useContext(GameContext);
 
@@ -52,38 +131,20 @@ const BombRun = props => {
 
   }, [state.engineOff]);
 
-  const crashText = state.secondsRemaining > 0 ? `Crash in: ${state.secondsRemaining}s` : `CRASH!!`;
+  if ( state.gameStep === GameSteps.start) {
+    return (<StartStep />);
+  }
+  if (state.gameStep === GameSteps.bombing) {
+    return (<BombingStep />);
+  }
+  if (state.gameStep === GameSteps.restartingEngine) {
+    return (<RestartingEngineStep />);
+  }
+  if (state.gameStep === GameSteps.over) {
+    return (<OverStep />);
+  }
 
-  return (
-    <div style={col}>
-      <button
-        style={bombRunButton}
-        onClick={() => dispatch({type: state.engineOff ? "activateEngine" : "cutEngine"})}
-      >
-        {state.engineOff ? "Restart Engine" : "Start attack"}
-      </button>
-
-      { state.engineOff &&
-        <span style={secondsStyle}>
-          {crashText}
-        </span>
-      }
-
-      <div style={targetListStyle}>
-        {state.targets.map((v, i) => (
-          <div style={targetSpacer} key={i}>
-            <TargetSet
-              target={v}
-              targetIndex={i}
-            />
-          </div>
-        ))}
-      </div>
-
-    </div>
-  );
-
-
+  return null;
 };
 
 export default BombRun;
