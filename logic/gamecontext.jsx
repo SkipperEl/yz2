@@ -27,7 +27,6 @@ const initialState = {
   dice: [...initialDice],
   rollsLeft: 3,
 
-  engineOff: false,
   secondsRemaining: BombRunDuration,
 
   targets: [],
@@ -109,7 +108,11 @@ const reducer = (state, action) => {
       };
 
     case "secondElapsed": {
+      console.log("tick..")
+
       let newSeconds = state.secondsRemaining;
+      let newGameStep = state.gameStep;
+
       if (state.gameStep === GameSteps.bombing || state.gameStep === GameSteps.restartingEngine) {
         newSeconds -= 1;
         if (newSeconds < 0) {

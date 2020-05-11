@@ -117,19 +117,19 @@ const BombRun = props => {
   useEffect(() => {
     let interval = null;
 
-    if (state.engineOff) {
+    if (state.gameStep === GameSteps.bombing) {
       interval = window.setInterval(() => {
         if (EnableCountdown) {
           dispatch({type: "secondElapsed"});
         }
       }, 1000);
-    } else {
+    } else if (state.gameStep === GameSteps.over || state.gameStep === GameSteps.start) {
       window.clearInterval(interval);
     }
 
     return () => window.clearInterval(interval);
 
-  }, [state.engineOff]);
+  }, [state.gameStep]);
 
   if ( state.gameStep === GameSteps.start) {
     return (<StartStep />);
