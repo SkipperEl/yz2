@@ -14,7 +14,16 @@ const initialDice = [
   {value: 0, locked: false, available: true}
 ];
 
+export const GameSteps = {
+  start: "start",
+  bombing: "bombing",
+  restartingEngine: "restartingEngine",
+  over: "over"
+};
+
 const initialState = {
+  gameStep: "start",
+
   dice: [...initialDice],
   rollsLeft: 3,
 
@@ -80,24 +89,37 @@ const reducer = (state, action) => {
         ...state
       };
 
-    case "cutEngine":
+    case "beginBombing":
       return {
         ...state,
-        engineOff: true,
+        gameStep: GameSteps.bombing,
         secondsRemaining: BombRunDuration,
         targets: generateTargets(2)
       };
 
-    case "activateEngine":
+    case "restartEngine":
       return {
         ...state,
-        engineOff: false
+        gameStep: GameSteps.restartingEngine,
+        targets: generateTargets(1)
       };
 
     case "secondElapsed": {
+      let newSeconds = state.secondsRemaining;
+      if (state.gameStep === GameSteps.bombing || state.gameStep === GameSteps.restartingEngine) {
+        newSeconds -= 1;
+        if (newSeconds < 0) {
+          newSeconds = 0;
+          newGameStep = GameSteps.over;
+        }
+      } else {
+        newSeconds = BombRunDuration;
+      }
+
       return {
         ...state,
-        secondsRemaining: secondsDecrement(state.secondsRemaining, state.engineOff)
+        secondsRemaining: newSeconds,
+        gameStep: newGameStep
       };
     }
 

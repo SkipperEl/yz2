@@ -13,7 +13,7 @@ export default function Index() {
   return (
     <DndProvider backend={Backend}>
       <GameContextProvider>
-        <h1>Don't say I don't love you, Rich</h1>
+        <h1>Happy Birthday, old coot</h1>
         <StatusBar />
         <DiceRoller />
         <BombRun />
