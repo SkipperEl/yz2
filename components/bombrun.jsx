@@ -79,7 +79,7 @@ const BombingStep = props => {
 
 };
 
-const RestartingEngineStep => {
+const RestartingEngineStep = props => {
   const [state, dispatch] = useContext(GameContext);
 
   return (
@@ -103,7 +103,7 @@ const RestartingEngineStep => {
   );
 };
 
-const OverStep => {
+const OverStep = props => {
   return (
     <h1>
       CRASHED! Bummer.
