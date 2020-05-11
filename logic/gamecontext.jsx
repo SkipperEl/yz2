@@ -74,11 +74,15 @@ const reducer = (state, action) => {
         const updatedTargets = [...state.targets];
         updatedTargets[action.targetIndex].dice[action.targetDieIndex] = srcDieValue;
 
-        // Update target completion
-        const newStuff = updateTargetMatching(updatedTargets);
+        // Update target completion. Only replenish in bombing step.
+        const newStuff = updateTargetMatching(updatedTargets, state.gameStep === GameSteps.bombing);
+
+        // If there are no targets, transition to start step
+        const nextStep = newStuff.newTargets.length === 0 ? GameSteps.start : state.gameStep;
 
         return {
           ...state,
+          gameStep: nextStep,
           dice: newDice,
           targets: newStuff.newTargets,
           score: state.score + newStuff.score
