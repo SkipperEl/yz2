@@ -115,15 +115,19 @@ const BombRun = props => {
   const [state, dispatch] = useContext(GameContext);
 
   useEffect(() => {
+    console.log("gamestep..");
+
     let interval = null;
 
-    if (state.gameStep === GameSteps.bombing) {
+    if (state.gameStep === GameSteps.bombing || state.gameStep === GameSteps.restartingEngine) {
       interval = window.setInterval(() => {
+        console.log("tick (component)")
         if (EnableCountdown) {
           dispatch({type: "secondElapsed"});
         }
       }, 1000);
     } else if (state.gameStep === GameSteps.over || state.gameStep === GameSteps.start) {
+      console.log("Stopping timer");
       window.clearInterval(interval);
     }
 
