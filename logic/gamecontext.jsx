@@ -108,8 +108,6 @@ const reducer = (state, action) => {
       };
 
     case "secondElapsed": {
-      console.log("tick..")
-
       let newSeconds = state.secondsRemaining;
       let newGameStep = state.gameStep;
 
